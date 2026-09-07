@@ -1,0 +1,490 @@
+print(...)
+
+Prints all arguments seperated by tabs in the aimware console.
+
+LoadScript(filename: string)
+Loads the specified script.
+
+UnloadScript(filename: string)
+Unloads the specified script.
+
+GetScriptName(): string
+Returns the filename of your script.
+
+entities
+entities.FindByClass(name: string): Array[Entity]
+
+Returns a list with all entities with the matching classname.
+
+for _, ent in ipairs(entities.FindByClass("CCSPlayer")) do
+    print(ent:GetName())
+end
+entities.GetLocalPlayer(): Entity
+Returns yourself.
+
+entities.GetByIndex(index: number): Entity
+Returns the entity matching the index.
+
+entities.GetByUserID(userid: number): Entity
+Returns the entity matches the user id.
+
+entities.GetPlayerRessources(): Entity
+Returns the a dummy entity, useful for accessing the CCSPlayerResource proptable.
+
+client
+client.WorldToScreen(pos: Vector3): number, number
+
+Translates world position into screen position and returns it.
+
+client.Command(command: string, unrestrict: boolean?)
+Runs command in the console, you generally want to always set unrestrict to true.
+
+client.ChatSay(message: string)
+Says the message in the global chat.
+
+client.ChatTeamSay(message: string)
+Says the message in the team chat.
+
+client.AllowListener(name: string)
+Makes the FireGameEvent callback listen to the specified event.
+
+client.GetPlayerNameByIndex(index: number): string
+Returns the name of the player with the matching index.
+
+Equivalent to:
+
+entities.GetByIndex(index):GetName()
+client.GetPlayerNameByUserID(userid: number): string
+Returns the name of the player with the matching userid.
+
+Equivalent to:
+
+entities.GetByUserID(userid):GetName()
+client.GetPlayerInfo(index: number)
+Returns the following table:
+
+Name	Type	Description
+Name	string	Player name
+UserID	integer	UserID
+SteamID	integer	Steam2 ID
+IsBot	boolean	Is a bot
+IsGOTV	boolean	Is GOTV
+client.GetLocalPlayerIndex(): number
+Returns the index of yourself.
+
+Equivalent to:
+
+entities.GetLocalPlayer():GetIndex()
+client.SetConVar(name: string, value, unrestrict: boolean?)
+Sets the specified console variable to the specified value.
+
+// TODO: what is unrestrict
+
+globals
+globals.TickInterval(): number
+
+Returns the time between each tick.
+
+globals.TickCount(): number
+Returns the tick the server is on.
+
+globals.RealTime(): number
+Returns the time in seconds since the game started.
+
+globals.CurTime(): number
+Returns the time of the server in seconds.
+
+globals.FrameCount(): number
+Returns the number of rendered frames.
+
+globals.FrameTime(): number
+Returns the time the last frame took to render.
+
+NOTE: According to aimware docs this might return globals.TickInterval in some callbacks. Use globals.AbsoluteFrameTime instead.
+
+globals.AbsoluteFrameTime(): number
+Returns the time the last frame took to render.
+
+To convert to FPS use:
+
+math.floor(1 / globals.AbsoluteFrameTime())
+globals.MaxClients(): number
+Returns the max player count of the server.
+
+callbacks
+callbacks.Register(name: string, function: function)
+callbacks.Register(name: string, unique: string, function: function)
+
+Registers a callback with the specified name and callback function.
+If you specify the unique argument, you can use callbacks.Unregister to unregister the callback later.
+
+See also: Callbacks
+
+callbacks.Unregister(name: string, unique: string)
+Unregisters a previously registered callback
+
+callbacks.Register("Draw", "ragequit", function()
+    client.Command("quit")
+end)
+
+callbacks.Unregister("Draw", "ragequit")
+draw
+draw.Color(r: number, g: number, b: number, a: number)
+
+Sets the RGBA color for drawing shapes and texts.
+
+See also: https://en.wikipedia.org/wiki/RGBA_color_model
+
+draw.Line(x1: number, y1: number, x2: number, y2: number)
+Draws a line from x1|y1 to x2]y2 with the color.
+
+draw.FilledRect(x1: number, y1: number, x2: number, y2: number)
+Draws a filled rectangle with the top left point at x1|y1 and the bottom right point at x2|y2.
+
+draw.OutlinedRect(x1: number, y1: number, x2: number, y2: number)
+Draws the outline of a rectangle with the top left point at x1|y1 and the bottom right point at x2|y2.
+
+draw.RoundedRect(x1: number, y1: number, x2: number, y2: number, radius: number, topleft: number, topright: number, bottomleft: number, bottomright: number)
+Draws the outline of a rectangle with the top left point at x1|y1 and the bottom right point at x2|y2 with rounded corners.
+
+draw.RoundedRectFill(x1: number, y1: number, x2: number, y2: number, radius: number, topleft: number, topright: number, bottomleft: number, bottomright: number)
+Draws a filled rectangle with the top left point at x1|y1 and the bottom right point at x2|y2 with rounded corners.
+
+draw.ShadowRect(x1: number, y1: number, x2: number, y2: number, radius: number)
+Draws a filled rectangle with the top left point at x1|y1 and the bottom right point at x2|y2 and its shadow.
+
+draw.Triangle(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number)
+Draws a filled triangle.
+
+draw.FilledCircle(x: number, y: number, radius: number)
+Draws a filled circle at x|y with the specified radius.
+
+draw.OutlinedCircle(x: number, y: number, radius: number)
+Draws the outline of a circle at x|y with the specified radius.
+
+draw.GetTextSize(text: string): number, number
+Returns width and height of the specified text with the current font.
+
+draw.Text(x: number, y: number, text: string)
+Draws the specified text at x|y with the current font.
+
+draw.TextShadow(x. number, y: number, text: string)
+Draws the specified text at x|y with the current font and its shadow.
+
+draw.GetScreenSize(): number, number
+Returns resolution of the game (width, height).
+
+draw.CreateFont(name: string, height: number, weight: number): Font
+Creates a font with the specified height and weight and returns it.
+
+// TODO: return?
+
+draw.AddFontResource(ttf: string)
+Adds a .ttf font file to the available fonts.
+
+// TODO: return?
+
+draw.SetFont(font: Font)
+Sets current font for drawing.
+
+draw.CreateTexture(rgba: RGBAData, width: number, height: number): Texture
+Creates a new texture with the speciifed width and height from the rgba array.
+
+draw.UpdateTexture(texture: Texture, rgba: RGBAData)
+Updates existing texture with new rgba data.
+
+draw.SetTexture(texture)
+Sets current drawing texture (use nil to reset).
+Use shape drawing functions (e.g. draw.FilledRect) for drawing the texture.
+
+draw.SetScissorRect()
+// TODO
+
+common
+common.Time(): number
+
+Returns the time since cheat was loaded.
+globals.RealTime should be preferred over this.
+
+common.DecodePNG(data: string): RGBAData, number, number
+Returns a list of rgba colors, the width and height of the png image.
+
+common.DecodeJPEG(data: string): RGBAData, number, number
+Returns a list of rgba colors, the width and height of the jpeg image.
+
+common.RasterizeSVG(data: string, scale: number): RGBAData, number, number
+Returns a list of rgba colors, the width and height of the scaled svg image.
+
+gui
+gui.GetValue(varname: string)
+
+Returns the value of the ui element with the specified varnamae.
+
+Return types:
+
+Type	Return type	Description
+gui.Checkbox	boolean	Checkbox is checked
+gui.Slider	number	Slider value
+gui.Keybox	number	Key number; 0 = nothing; input.IsButtonDown
+gui.Combobox	number	Index of which option was selected (0 indexed)
+gui.Editbox	string	Entered string
+gui.ColorPicker	number, number, number	Picked color
+gui.SetValue(varname: string, value)
+Sets the value of the specified variable to the specified value.
+
+gui.Reference(...: string): GuiObject
+Returns an existing gui object.
+
+gui.Checkbox(parent: GuiObject, varname: string, name: string, value: boolean): GuiObject
+Creates a new checkbox and returns it.
+
+gui.Slider(parent: GuiObject, varname: string, name: string, value: number, min: number, max: number, step: number?): GuiObject
+Creates a new slider and returns it.
+step defaults to 1.
+
+gui.Keybox(parent: GuiObject, varname: string, name: string, key: number?): GuiObject
+Creates a new keybox and returns it.
+key defaults to 0.
+
+gui.Combobox(parent: GuiObject, varname: string, name: string, options...: string): GuiObject
+Creates a new combobox and returns it.
+
+gui.Combobox(parent, "example.combobox", "example combobox", "option 0", "option 1", "option 2", "option 3")
+
+local options = {"option 0", "option 1", "option 2", "option 3"}
+local combobox = gui.Combobox(parent, "example.combobox", "eaxmple combobox", unpack(options))
+local option = options[combobox:GetValue() + 1] -- + 1 because it's zero indexed
+gui.Editbox(parent: GuiObject, varname: string, value: string?): GuiObject
+Creates a new editbox and returns it.
+value defaults to an empty string.
+
+gui.Text(parent: GuiObject, text: string): GuiObject
+Creates a new text and returns it.
+
+gui.Groupbox(parent: GuiObject, name: string, x: number, y number, w number, h number): GuiObject
+Creates a new groupbox and returns it.
+
+gui.ColorPicker(parent: GuiObject, varname: string, name: string, r: number, g: number, b: number, a: number): GuiObject
+Creates a new colorpicker and returns it.
+
+gui.Window(varname: string, name: string, x: number, y: number, w: number, h: number): GuiObject
+Creates a new window and returns it.
+
+gui.Button(parent: GuiObject, name: string, callback: function): GuiObject
+Creates a new button and returns it.
+
+The callback function is called everytime the button is pressed.
+
+gui.Multibox(parent: GuiObject, name: string): GuiObject
+Creates a new multibox and returns it.
+
+gui.Command(command: string)
+Executes a command in the aimware console.
+
+Useful for setting variables that cannot be set using gui.SetValue (e.g. gui.Command('rbot.antiaim.base 90 "Desync Jitter"'))
+
+gui.Custom(parent: GuiObject, varname: string, x: number, y: number, w: number, h: number, update: function, write: function, read: function): GuiObject
+Creates a fully customizeable gui object and returns it.
+
+Callbacks:
+
+update(x1: number, y1: number, x2: number, y2: number, active: boolean)
+write()
+read(value)
+TODO: wtf do they do
+
+gui.Tab(parent: GuiObject, varname: string, name: string): GuiObject
+Creates a new tab and returns it.
+
+gui.Listbox(parent: GuiObject, varname: string, height: number, options...: string): GuiObject
+Creates a new listbox and returns it.
+
+gui.XML(xml)
+// TODO
+
+input
+Note: For possible keys check Virtual Key Codes.
+
+input.GetMousePos(): number, number
+
+Returns the position of the mouse cursor.
+
+input.IsButtonDown(button: number): boolean
+Returns whether the button is helt down or not.
+
+input.IsButtonPressed(button: number): boolean
+Returns whether the button is newly pressed (only for the start of the button being helt down).
+
+Note: There is some delay before this triggers again, so rapidly pressing and unpressing a key doesn't always work.
+
+input.IsButtonReleased(button: number): boolean
+Returns whether the button is newly released (only for a short amount of time after the button is no longer helt down).
+
+Note: There is some delay before this triggers again, so rapidly pressing and unpressing a key doesn't always work.
+
+input.GetMouseWheelDelta(): number
+Returns accumulated mouse scroll.
+
+engine
+engine.TraceLine(src: Vector3, dst: Vector3, mask: number): Trace
+
+Traces line from src to dst.
+
+// TODO: example cuz it's hard
+
+engine.TraceHull(src: Vector3, dst: Vector3, mins: Vector3, maxs: Vector3, mask: number): Trace
+Traces hull from src to dst.
+
+engine.GetPointContents(x: number, y: number, z: number)
+Checks if given point is inside wall, returns contents
+
+engine.GetMapName(): string
+Returns current map name (e.g. de_dust2).
+
+engine.GetServerIP(): string
+Returns current server ip.
+
+Returns loopback when hosting the server yourself.
+
+engine.GetViewAngles(): EulerAngles
+Returns your current viewangles.
+
+engine.SetViewAngles(angles: EulerAngles)
+Sets your current viweangles.
+
+file
+file.Open(filename: string, mode: string): File mode "w" - write mode "r" - read mode "a" - append
+
+Returns a file option for the specified filename.
+
+Mode	Description
+w	opens file in write mode (previous content is overwritten)
+r	opens file in read mode
+a	opens file in append mode
+Warning: When trying to open a file in read mode and the file didn't exist, this previously returned nil. This function now throws an uncatchable error (no idea how they did this)
+Use file.Enumerate for checking if the file exists first.
+
+file.Delete(filename: string)
+Deletes the file.
+
+file.Enumerate(callback: function)
+Calls the callback with every filename found in the cheat directory.
+
+file.Write(filename: string, content: string)
+Writes the specified content in the specified file.
+
+file.Read(filename: string): string
+Returns the content of the specified file.
+
+Warning: Trying to read from a non-existent file will throw an uncatchable error!
+
+http
+http.Get(url: string): string http.Get(url: string, callback: function)
+
+If no callback is specified, this function will freeze the entire game until the ressource has been fetched.
+
+You should never call this function without a callback unless the ressource is crucial to the execution (and you should cache the result on disk then probably too).
+
+-- Simple nonblocking auto updater
+
+local VERSION = "1.0.0"
+
+http.Get("https://myserver/myscript/version", function(version)
+    if version == nil then return end -- nil means no internet connection
+    if version == VERSION then return end -- no update
+    http.Get("https://myserver/myscript/script.lua", function(code)
+        if code == nil then return end -- no connection, abort
+        file.Write(GetScriptName(), code)
+        UnloadScript(GetScriptName())
+        LoadScript(GetScriptName())
+    end)
+end)
+vector
+Here, a vector or angle is a list of 3 numbers.
+
+vector.Add(vector1, vector2)
+
+Adds 2 vectors and returns the result.
+
+vector.Add({1, 1, 1}, {2, 2, 2}) -- {3, 3, 3}
+vector.Subtract(vector1, vector2)
+Subtracts 2 vectors and returns the result.
+
+vector.Subtract({1, 1, 1}, {2, 2, 2}) -- {-1, -1, -1}
+vector.Multiply(vector, factor)
+Multiplies a vector by the specified factor nand returns the result.
+
+vector.Multiply({5, 5, 5}, 5) -- {25, 25, 25}
+vector.Divide(vector, factor)
+Divides a vector by the specified factor nand returns the result.
+
+vector.Divide({5, 5, 5}, 2) -- {2.5, 2.5, 2.5}
+vector.Length(vector): number
+Returns the euclidean distance to the vector.
+
+vector.Length({1, 1, 1}) -- 1.7320508075688772
+vector.LengthSqr(vector): number
+Returns the Manhattan distance to the vector.
+
+vector.Length({1, 1, 1}) -- 3
+vector.Distance(vector1, vector2): number
+Returns the euclidean distance between two vectors.
+
+vector.Normalize(vector)
+Returns a normalized vector.
+
+vector.Normalize({1, 2, 3}) -- {0.33333, 0.66666, 1}
+vector.Normalize({1, 2, 3}) -- {0.16666, 0.33333, 0.5}
+// TODO: if greatest or sum
+
+vector.Angles(angle)
+vector.AngleForward(angle)
+vector.AngleRight(angle)
+vector.AngleUp(angle)
+vector.AngleNormalize(angle)
+network
+:network.Socket(type: string): Socket
+
+Opens a socket and returns it.
+Currently only type UDP is supported.
+
+network.GetAddrInfo(name: string): string
+
+Resolves hostname to IP and returns it.
+
+network.GetNameInfo(address: string): string
+Resolves IP to hostname and returns it.
+
+Note: Reverse DNS lookups can be spoofed.
+
+materials
+materials.Find(name: string): Material
+
+Finds material by name and returns it.
+
+materials.Enumerate(callback: function)
+
+Calls the callback with every loaded material.
+
+materials.Create(name: string, vmt: string, type: string)
+
+Creates custom material following the Valve Material Type syntax.
+
+panorama
+panorama.RunScript(script: string)
+
+Runs javascript in the context of CSGO panorama UI.
+
+CS:GO Panorama API
+
+cheat
+Note: This module is undocumented and may change in the future.
+
+cheat.IsFakeDucking(): boolean
+
+Returns if you're fakeducking.
+
+cheat.RequestSpeedBurst()
+No fucking idea.
+
+// TODO

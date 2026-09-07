@@ -1,0 +1,656 @@
+{
+  "print": {
+    "prefix": "print ...",
+    "body": "print ...",
+    "description": "Prints all arguments seperated by tabs in the aimware console.",
+    "scope": "moonscript,yuescript"
+  },
+  "LoadScript": {
+    "prefix": "LoadScript filename: string",
+    "body": "LoadScript filename",
+    "description": "Loads the specified script.",
+    "scope": "moonscript,yuescript"
+  },
+  "UnloadScript": {
+    "prefix": "UnloadScript filename: string",
+    "body": "UnloadScript filename",
+    "description": "Unloads the specified script.",
+    "scope": "moonscript,yuescript"
+  },
+  "GetScriptName": {
+    "prefix": "GetScriptName! -> string",
+    "body": "GetScriptName!",
+    "description": "Returns the filename of your script.",
+    "scope": "moonscript,yuescript"
+  },
+  "entitiesFindByClass": {
+    "prefix": "entities.FindByClass name: string -> Array[Entity]",
+    "body": "entities.FindByClass name",
+    "description": "Returns a list with all entities with the matching classname.\n\n```lua\nfor _, ent in ipairs(entities.FindByClass(\"CCSPlayer\")) do\n    print(ent:GetName())\nend\n```",
+    "scope": "moonscript,yuescript"
+  },
+  "entitiesGetLocalPlayer": {
+    "prefix": "entities.GetLocalPlayer! -> Entity",
+    "body": "entities.GetLocalPlayer!",
+    "description": "Returns yourself.",
+    "scope": "moonscript,yuescript"
+  },
+  "entitiesGetByIndex": {
+    "prefix": "entities.GetByIndex index: number -> Entity",
+    "body": "entities.GetByIndex index",
+    "description": "Returns the entity matching the index.",
+    "scope": "moonscript,yuescript"
+  },
+  "entitiesGetByUserID": {
+    "prefix": "entities.GetByUserID userid: number -> Entity",
+    "body": "entities.GetByUserID userid",
+    "description": "Returns the entity matches the user id.",
+    "scope": "moonscript,yuescript"
+  },
+  "entitiesGetPlayerRessources": {
+    "prefix": "entities.GetPlayerRessources! -> Entity",
+    "body": "entities.GetPlayerRessources!",
+    "description": "Returns the a dummy entity, useful for accessing the `CCSPlayerResource` proptable.",
+    "scope": "moonscript,yuescript"
+  },
+  "clientWorldToScreen": {
+    "prefix": "client.WorldToScreen pos: Vector3 -> number, number",
+    "body": "client.WorldToScreen pos",
+    "description": "Translates world position into screen position and returns it.",
+    "scope": "moonscript,yuescript"
+  },
+  "clientCommand": {
+    "prefix": "client.Command command: string, unrestrict: boolean?",
+    "body": "client.Command command, unrestrict",
+    "description": "Runs command in the console, you generally want to always set `unrestrict` to `true`.",
+    "scope": "moonscript,yuescript"
+  },
+  "clientChatSay": {
+    "prefix": "client.ChatSay message: string",
+    "body": "client.ChatSay message",
+    "description": "Says the message in the global chat.",
+    "scope": "moonscript,yuescript"
+  },
+  "clientChatTeamSay": {
+    "prefix": "client.ChatTeamSay message: string",
+    "body": "client.ChatTeamSay message",
+    "description": "Says the message in the team chat.",
+    "scope": "moonscript,yuescript"
+  },
+  "clientAllowListener": {
+    "prefix": "client.AllowListener name: string",
+    "body": "client.AllowListener name",
+    "description": "Makes the FireGameEvent callback listen to the specified event.",
+    "scope": "moonscript,yuescript"
+  },
+  "clientGetPlayerNameByIndex": {
+    "prefix": "client.GetPlayerNameByIndex index: number -> string",
+    "body": "client.GetPlayerNameByIndex index",
+    "description": "Returns the name of the player with the matching index.\n\nEquivalent to:\n```lua\nentities.GetByIndex(index):GetName()\n```",
+    "scope": "moonscript,yuescript"
+  },
+  "clientGetPlayerNameByUserID": {
+    "prefix": "client.GetPlayerNameByUserID userid: number -> string",
+    "body": "client.GetPlayerNameByUserID userid",
+    "description": "Returns the name of the player with the matching userid.\n\nEquivalent to:\n```lua\nentities.GetByUserID(userid):GetName()\n```",
+    "scope": "moonscript,yuescript"
+  },
+  "clientGetPlayerInfo": {
+    "prefix": "client.GetPlayerInfo index: number",
+    "body": "client.GetPlayerInfo index",
+    "description": "Returns the following table:\n\n|  Name     |  Type     |  Description  |\n| --------- | --------- | ------------- |\n|  Name     |  string   |  Player name  |\n|  UserID   |  integer  |  UserID       |\n|  SteamID  |  integer  |  Steam2 ID    |\n|  IsBot    |  boolean  |  Is a bot     |\n|  IsGOTV   |  boolean  |  Is GOTV      |",
+    "scope": "moonscript,yuescript"
+  },
+  "clientGetLocalPlayerIndex": {
+    "prefix": "client.GetLocalPlayerIndex! -> number",
+    "body": "client.GetLocalPlayerIndex!",
+    "description": "Returns the index of yourself.\n\nEquivalent to:\n```lua\nentities.GetLocalPlayer():GetIndex()\n```",
+    "scope": "moonscript,yuescript"
+  },
+  "clientSetConVar": {
+    "prefix": "client.SetConVar name: string, value, unrestrict: boolean?",
+    "body": "client.SetConVar name, value, unrestrict",
+    "description": "Sets the specified console variable to the specified value.\n\n// TODO: what is unrestrict",
+    "scope": "moonscript,yuescript"
+  },
+  "globalsTickInterval": {
+    "prefix": "globals.TickInterval! -> number",
+    "body": "globals.TickInterval!",
+    "description": "Returns the time between each tick.",
+    "scope": "moonscript,yuescript"
+  },
+  "globalsTickCount": {
+    "prefix": "globals.TickCount! -> number",
+    "body": "globals.TickCount!",
+    "description": "Returns the tick the server is on.",
+    "scope": "moonscript,yuescript"
+  },
+  "globalsRealTime": {
+    "prefix": "globals.RealTime! -> number",
+    "body": "globals.RealTime!",
+    "description": "Returns the time in seconds since the game started.",
+    "scope": "moonscript,yuescript"
+  },
+  "globalsCurTime": {
+    "prefix": "globals.CurTime! -> number",
+    "body": "globals.CurTime!",
+    "description": "Returns the time of the server in seconds.",
+    "scope": "moonscript,yuescript"
+  },
+  "globalsFrameCount": {
+    "prefix": "globals.FrameCount! -> number",
+    "body": "globals.FrameCount!",
+    "description": "Returns the number of rendered frames.",
+    "scope": "moonscript,yuescript"
+  },
+  "globalsFrameTime": {
+    "prefix": "globals.FrameTime! -> number",
+    "body": "globals.FrameTime!",
+    "description": "Returns the time the last frame took to render.\n\n> **NOTE**: According to aimware docs this might return globals.TickInterval in some callbacks.\n> Use globals.AbsoluteFrameTime instead.",
+    "scope": "moonscript,yuescript"
+  },
+  "globalsAbsoluteFrameTime": {
+    "prefix": "globals.AbsoluteFrameTime! -> number",
+    "body": "globals.AbsoluteFrameTime!",
+    "description": "Returns the time the last frame took to render.\n\nTo convert to FPS use:\n```lua\nmath.floor(1 / globals.AbsoluteFrameTime())\n```",
+    "scope": "moonscript,yuescript"
+  },
+  "globalsMaxClients": {
+    "prefix": "globals.MaxClients! -> number",
+    "body": "globals.MaxClients!",
+    "description": "Returns the max player count of the server.",
+    "scope": "moonscript,yuescript"
+  },
+  "callbacksRegister": {
+    "prefix": "callbacks.Register name: string, unique: string, function: function",
+    "body": "callbacks.Register name, unique, function",
+    "description": "Registers a callback with the specified name and callback function.  \nIf you specify the `unique` argument, you can use callbacks.Unregister to unregister the callback later.\n\nSee also: Callbacks",
+    "scope": "moonscript,yuescript"
+  },
+  "callbacksUnregister": {
+    "prefix": "callbacks.Unregister name: string, unique: string",
+    "body": "callbacks.Unregister name, unique",
+    "description": "Unregisters a previously registered callback\n\n```lua\ncallbacks.Register(\"Draw\", \"ragequit\", function()\n    client.Command(\"quit\")\nend)\n\ncallbacks.Unregister(\"Draw\", \"ragequit\")\n```",
+    "scope": "moonscript,yuescript"
+  },
+  "drawColor": {
+    "prefix": "draw.Color r: number, g: number, b: number, a: number",
+    "body": "draw.Color r, g, b, a",
+    "description": "Sets the RGBA color for drawing shapes and texts.\n\nSee also: https://en.wikipedia.org/wiki/RGBA_color_model",
+    "scope": "moonscript,yuescript"
+  },
+  "drawLine": {
+    "prefix": "draw.Line x1: number, y1: number, x2: number, y2: number",
+    "body": "draw.Line x1, y1, x2, y2",
+    "description": "Draws a line from x1|y1 to x2]y2 with the color.",
+    "scope": "moonscript,yuescript"
+  },
+  "drawFilledRect": {
+    "prefix": "draw.FilledRect x1: number, y1: number, x2: number, y2: number",
+    "body": "draw.FilledRect x1, y1, x2, y2",
+    "description": "Draws a filled rectangle with the top left point at x1|y1 and the bottom right point at x2|y2.",
+    "scope": "moonscript,yuescript"
+  },
+  "drawOutlinedRect": {
+    "prefix": "draw.OutlinedRect x1: number, y1: number, x2: number, y2: number",
+    "body": "draw.OutlinedRect x1, y1, x2, y2",
+    "description": "Draws the outline of a rectangle with the top left point at x1|y1 and the bottom right point at x2|y2.",
+    "scope": "moonscript,yuescript"
+  },
+  "drawRoundedRect": {
+    "prefix": "draw.RoundedRect x1: number, y1: number, x2: number, y2: number, radius: number, topleft: number, topright: number, bottomleft: number, bottomright: number",
+    "body": "draw.RoundedRect x1, y1, x2, y2, radius, topleft, topright, bottomleft, bottomright",
+    "description": "Draws the outline of a rectangle with the top left point at x1|y1 and the bottom right point at x2|y2 with rounded corners.",
+    "scope": "moonscript,yuescript"
+  },
+  "drawRoundedRectFill": {
+    "prefix": "draw.RoundedRectFill x1: number, y1: number, x2: number, y2: number, radius: number, topleft: number, topright: number, bottomleft: number, bottomright: number",
+    "body": "draw.RoundedRectFill x1, y1, x2, y2, radius, topleft, topright, bottomleft, bottomright",
+    "description": "Draws a filled rectangle with the top left point at x1|y1 and the bottom right point at x2|y2 with rounded corners.",
+    "scope": "moonscript,yuescript"
+  },
+  "drawShadowRect": {
+    "prefix": "draw.ShadowRect x1: number, y1: number, x2: number, y2: number, radius: number",
+    "body": "draw.ShadowRect x1, y1, x2, y2, radius",
+    "description": "Draws a filled rectangle with the top left point at x1|y1 and the bottom right point at x2|y2 and its shadow.",
+    "scope": "moonscript,yuescript"
+  },
+  "drawTriangle": {
+    "prefix": "draw.Triangle x1: number, y1: number, x2: number, y2: number, x3: number, y3: number",
+    "body": "draw.Triangle x1, y1, x2, y2, x3, y3",
+    "description": "Draws a filled triangle.",
+    "scope": "moonscript,yuescript"
+  },
+  "drawFilledCircle": {
+    "prefix": "draw.FilledCircle x: number, y: number, radius: number",
+    "body": "draw.FilledCircle x, y, radius",
+    "description": "Draws a filled circle at x|y with the specified radius.",
+    "scope": "moonscript,yuescript"
+  },
+  "drawOutlinedCircle": {
+    "prefix": "draw.OutlinedCircle x: number, y: number, radius: number",
+    "body": "draw.OutlinedCircle x, y, radius",
+    "description": "Draws the outline of a circle at x|y with the specified radius.",
+    "scope": "moonscript,yuescript"
+  },
+  "drawGetTextSize": {
+    "prefix": "draw.GetTextSize text: string -> number, number",
+    "body": "draw.GetTextSize text",
+    "description": "Returns width and height of the specified text with the current font.",
+    "scope": "moonscript,yuescript"
+  },
+  "drawText": {
+    "prefix": "draw.Text x: number, y: number, text: string",
+    "body": "draw.Text x, y, text",
+    "description": "Draws the specified text at x|y with the current font.",
+    "scope": "moonscript,yuescript"
+  },
+  "drawTextShadow": {
+    "prefix": "draw.TextShadow x. number, y: number, text: string",
+    "body": "draw.TextShadow x. number, y, text",
+    "description": "Draws the specified text at x|y with the current font and its shadow.",
+    "scope": "moonscript,yuescript"
+  },
+  "drawGetScreenSize": {
+    "prefix": "draw.GetScreenSize! -> number, number",
+    "body": "draw.GetScreenSize!",
+    "description": "Returns resolution of the game (width, height).",
+    "scope": "moonscript,yuescript"
+  },
+  "drawCreateFont": {
+    "prefix": "draw.CreateFont name: string, height: number, weight: number -> Font",
+    "body": "draw.CreateFont name, height, weight",
+    "description": "Creates a font with the specified height and weight and returns it.\n\n// TODO: return?",
+    "scope": "moonscript,yuescript"
+  },
+  "drawAddFontResource": {
+    "prefix": "draw.AddFontResource ttf: string",
+    "body": "draw.AddFontResource ttf",
+    "description": "Adds a `.ttf` font file to the available fonts.\n\n// TODO: return?",
+    "scope": "moonscript,yuescript"
+  },
+  "drawSetFont": {
+    "prefix": "draw.SetFont font: Font",
+    "body": "draw.SetFont font",
+    "description": "Sets current font for drawing.",
+    "scope": "moonscript,yuescript"
+  },
+  "drawCreateTexture": {
+    "prefix": "draw.CreateTexture rgba: RGBAData, width: number, height: number -> Texture",
+    "body": "draw.CreateTexture rgba, width, height",
+    "description": "Creates a new texture with the speciifed width and height from the rgba array.",
+    "scope": "moonscript,yuescript"
+  },
+  "drawUpdateTexture": {
+    "prefix": "draw.UpdateTexture texture: Texture, rgba: RGBAData",
+    "body": "draw.UpdateTexture texture, rgba",
+    "description": "Updates existing texture with new rgba data.",
+    "scope": "moonscript,yuescript"
+  },
+  "drawSetTexture": {
+    "prefix": "draw.SetTexture texture",
+    "body": "draw.SetTexture texture",
+    "description": "Sets current drawing texture (use `nil` to reset).  \nUse shape drawing functions (e.g. draw.FilledRect) for drawing the texture.",
+    "scope": "moonscript,yuescript"
+  },
+  "drawSetScissorRect": {
+    "prefix": "draw.SetScissorRect!",
+    "body": "draw.SetScissorRect!",
+    "description": "// TODO",
+    "scope": "moonscript,yuescript"
+  },
+  "commonTime": {
+    "prefix": "common.Time! -> number",
+    "body": "common.Time!",
+    "description": "Returns the time since cheat was loaded.  \nglobals.RealTime should be preferred over this.",
+    "scope": "moonscript,yuescript"
+  },
+  "commonDecodePNG": {
+    "prefix": "common.DecodePNG data: string -> RGBAData, number, number",
+    "body": "common.DecodePNG data",
+    "description": "Returns a list of rgba colors, the width and height of the png image.",
+    "scope": "moonscript,yuescript"
+  },
+  "commonDecodeJPEG": {
+    "prefix": "common.DecodeJPEG data: string -> RGBAData, number, number",
+    "body": "common.DecodeJPEG data",
+    "description": "Returns a list of rgba colors, the width and height of the jpeg image.",
+    "scope": "moonscript,yuescript"
+  },
+  "commonRasterizeSVG": {
+    "prefix": "common.RasterizeSVG data: string, scale: number -> RGBAData, number, number",
+    "body": "common.RasterizeSVG data, scale",
+    "description": "Returns a list of rgba colors, the width and height of the scaled svg image.",
+    "scope": "moonscript,yuescript"
+  },
+  "guiGetValue": {
+    "prefix": "gui.GetValue varname: string",
+    "body": "gui.GetValue varname",
+    "description": "Returns the value of the ui element with the specified varnamae.  \n\nReturn types:\n\n|  Type                     |  Return type                                      |  Description                                         |\n| ------------------------- | ------------------------------------------------- | ---------------------------------------------------- |\n|  gui.Checkbox     |  boolean                                  |  Checkbox is checked                                 |\n|  gui.Slider       |  number                                   |  Slider value                                        |\n|  gui.Keybox       |  number                                   |  Key number; 0 = nothing; input.IsButtonDown |\n|  gui.Combobox     |  number                                   |  Index of which option was selected (**0 indexed**)  |\n|  gui.Editbox      |  string                                   |  Entered string                                      |\n|  gui.ColorPicker  |  number, number, number   |  Picked color                                        |",
+    "scope": "moonscript,yuescript"
+  },
+  "guiSetValue": {
+    "prefix": "gui.SetValue varname: string, value",
+    "body": "gui.SetValue varname, value",
+    "description": "Sets the value of the specified variable to the specified value.",
+    "scope": "moonscript,yuescript"
+  },
+  "guiReference": {
+    "prefix": "gui.Reference ...: string -> GuiObject",
+    "body": "gui.Reference ...",
+    "description": "Returns an existing gui object.",
+    "scope": "moonscript,yuescript"
+  },
+  "guiCheckbox": {
+    "prefix": "gui.Checkbox parent: GuiObject, varname: string, name: string, value: boolean -> GuiObject",
+    "body": "gui.Checkbox parent, varname, name, value",
+    "description": "Creates a new checkbox and returns it.",
+    "scope": "moonscript,yuescript"
+  },
+  "guiSlider": {
+    "prefix": "gui.Slider parent: GuiObject, varname: string, name: string, value: number, min: number, max: number, step: number? -> GuiObject",
+    "body": "gui.Slider parent, varname, name, value, min, max, step",
+    "description": "Creates a new slider and returns it.  \n`step` defaults to 1.",
+    "scope": "moonscript,yuescript"
+  },
+  "guiKeybox": {
+    "prefix": "gui.Keybox parent: GuiObject, varname: string, name: string, key: number? -> GuiObject",
+    "body": "gui.Keybox parent, varname, name, key",
+    "description": "Creates a new keybox and returns it.  \n`key` defaults to 0.",
+    "scope": "moonscript,yuescript"
+  },
+  "guiCombobox": {
+    "prefix": "gui.Combobox parent: GuiObject, varname: string, name: string, options...: string -> GuiObject",
+    "body": "gui.Combobox parent, varname, name, options...",
+    "description": "Creates a new combobox and returns it.\n\n```lua\ngui.Combobox(parent, \"example.combobox\", \"example combobox\", \"option 0\", \"option 1\", \"option 2\", \"option 3\")\n\nlocal options = {\"option 0\", \"option 1\", \"option 2\", \"option 3\"}\nlocal combobox = gui.Combobox(parent, \"example.combobox\", \"eaxmple combobox\", unpack(options))\nlocal option = options[combobox:GetValue() + 1] -- + 1 because it's zero indexed\n```",
+    "scope": "moonscript,yuescript"
+  },
+  "guiEditbox": {
+    "prefix": "gui.Editbox parent: GuiObject, varname: string, value: string? -> GuiObject",
+    "body": "gui.Editbox parent, varname, value",
+    "description": "Creates a new editbox and returns it.  \n`value` defaults to an empty string.",
+    "scope": "moonscript,yuescript"
+  },
+  "guiText": {
+    "prefix": "gui.Text parent: GuiObject, text: string -> GuiObject",
+    "body": "gui.Text parent, text",
+    "description": "Creates a new text and returns it.",
+    "scope": "moonscript,yuescript"
+  },
+  "guiGroupbox": {
+    "prefix": "gui.Groupbox parent: GuiObject, name: string, x: number, y number, w number, h number -> GuiObject",
+    "body": "gui.Groupbox parent, name, x, y number, w number, h number",
+    "description": "Creates a new groupbox and returns it.",
+    "scope": "moonscript,yuescript"
+  },
+  "guiColorPicker": {
+    "prefix": "gui.ColorPicker parent: GuiObject, varname: string, name: string, r: number, g: number, b: number, a: number -> GuiObject",
+    "body": "gui.ColorPicker parent, varname, name, r, g, b, a",
+    "description": "Creates a new colorpicker and returns it.",
+    "scope": "moonscript,yuescript"
+  },
+  "guiWindow": {
+    "prefix": "gui.Window varname: string, name: string, x: number, y: number, w: number, h: number -> GuiObject",
+    "body": "gui.Window varname, name, x, y, w, h",
+    "description": "Creates a new window and returns it.",
+    "scope": "moonscript,yuescript"
+  },
+  "guiButton": {
+    "prefix": "gui.Button parent: GuiObject, name: string, callback: function -> GuiObject",
+    "body": "gui.Button parent, name, callback",
+    "description": "Creates a new button and returns it.\n\nThe callback function is called everytime the button is pressed.",
+    "scope": "moonscript,yuescript"
+  },
+  "guiMultibox": {
+    "prefix": "gui.Multibox parent: GuiObject, name: string -> GuiObject",
+    "body": "gui.Multibox parent, name",
+    "description": "Creates a new multibox and returns it.",
+    "scope": "moonscript,yuescript"
+  },
+  "guiCommand": {
+    "prefix": "gui.Command command: string",
+    "body": "gui.Command command",
+    "description": "Executes a command in the aimware console.\n\nUseful for setting variables that cannot be set using gui.SetValue (e.g. `gui.Command('rbot.antiaim.base 90 \"Desync Jitter\"')`)",
+    "scope": "moonscript,yuescript"
+  },
+  "guiCustom": {
+    "prefix": "gui.Custom parent: GuiObject, varname: string, x: number, y: number, w: number, h: number, update: function, write: function, read: function -> GuiObject",
+    "body": "gui.Custom parent, varname, x, y, w, h, update, write, read",
+    "description": "Creates a fully customizeable gui object and returns it.\n\nCallbacks:\n\n- **update**(x1: number, y1: number, x2: number, y2: number, active: boolean)\n- **write**()\n- **read**(value)\n\nTODO: wtf do they do",
+    "scope": "moonscript,yuescript"
+  },
+  "guiTab": {
+    "prefix": "gui.Tab parent: GuiObject, varname: string, name: string -> GuiObject",
+    "body": "gui.Tab parent, varname, name",
+    "description": "Creates a new tab and returns it.",
+    "scope": "moonscript,yuescript"
+  },
+  "guiListbox": {
+    "prefix": "gui.Listbox parent: GuiObject, varname: string, height: number, options...: string -> GuiObject",
+    "body": "gui.Listbox parent, varname, height, options...",
+    "description": "Creates a new listbox and returns it.",
+    "scope": "moonscript,yuescript"
+  },
+  "guiXML": {
+    "prefix": "gui.XML xml",
+    "body": "gui.XML xml",
+    "description": "// TODO",
+    "scope": "moonscript,yuescript"
+  },
+  "inputGetMousePos": {
+    "prefix": "input.GetMousePos! -> number, number",
+    "body": "input.GetMousePos!",
+    "description": "Returns the position of the mouse cursor.",
+    "scope": "moonscript,yuescript"
+  },
+  "inputIsButtonDown": {
+    "prefix": "input.IsButtonDown button: number -> boolean",
+    "body": "input.IsButtonDown button",
+    "description": "Returns whether the button is helt down or not.",
+    "scope": "moonscript,yuescript"
+  },
+  "inputIsButtonPressed": {
+    "prefix": "input.IsButtonPressed button: number -> boolean",
+    "body": "input.IsButtonPressed button",
+    "description": "Returns whether the button is *newly* pressed (only for the start of the button being helt down).\n\n> **Note**: There is some delay before this triggers again, so rapidly pressing and unpressing a key doesn't always work.",
+    "scope": "moonscript,yuescript"
+  },
+  "inputIsButtonReleased": {
+    "prefix": "input.IsButtonReleased button: number -> boolean",
+    "body": "input.IsButtonReleased button",
+    "description": "Returns whether the button is *newly* released (only for a short amount of time after the button is no longer helt down).\n\n> **Note**: There is some delay before this triggers again, so rapidly pressing and unpressing a key doesn't always work.",
+    "scope": "moonscript,yuescript"
+  },
+  "inputGetMouseWheelDelta": {
+    "prefix": "input.GetMouseWheelDelta! -> number",
+    "body": "input.GetMouseWheelDelta!",
+    "description": "Returns accumulated mouse scroll.",
+    "scope": "moonscript,yuescript"
+  },
+  "engineTraceLine": {
+    "prefix": "engine.TraceLine src: Vector3, dst: Vector3, mask: number -> Trace",
+    "body": "engine.TraceLine src, dst, mask",
+    "description": "Traces line from src to dst.\n\n// TODO: example cuz it's hard",
+    "scope": "moonscript,yuescript"
+  },
+  "engineTraceHull": {
+    "prefix": "engine.TraceHull src: Vector3, dst: Vector3, mins: Vector3, maxs: Vector3, mask: number -> Trace",
+    "body": "engine.TraceHull src, dst, mins, maxs, mask",
+    "description": "Traces hull from src to dst.",
+    "scope": "moonscript,yuescript"
+  },
+  "engineGetPointContents": {
+    "prefix": "engine.GetPointContents x: number, y: number, z: number",
+    "body": "engine.GetPointContents x, y, z",
+    "description": "Checks if given point is inside wall, returns contents",
+    "scope": "moonscript,yuescript"
+  },
+  "engineGetMapName": {
+    "prefix": "engine.GetMapName! -> string",
+    "body": "engine.GetMapName!",
+    "description": "Returns current map name (e.g. `de_dust2`).",
+    "scope": "moonscript,yuescript"
+  },
+  "engineGetServerIP": {
+    "prefix": "engine.GetServerIP! -> string",
+    "body": "engine.GetServerIP!",
+    "description": "Returns current server ip.\n\nReturns `loopback` when hosting the server yourself.",
+    "scope": "moonscript,yuescript"
+  },
+  "engineGetViewAngles": {
+    "prefix": "engine.GetViewAngles! -> EulerAngles",
+    "body": "engine.GetViewAngles!",
+    "description": "Returns your current viewangles.",
+    "scope": "moonscript,yuescript"
+  },
+  "engineSetViewAngles": {
+    "prefix": "engine.SetViewAngles angles: EulerAngles",
+    "body": "engine.SetViewAngles angles",
+    "description": "Sets your current viweangles.",
+    "scope": "moonscript,yuescript"
+  },
+  "fileOpen": {
+    "prefix": "file.Open filename: string, mode: string -> File",
+    "body": "file.Open filename, mode",
+    "description": "mode \"w\" - write\nmode \"r\" - read\nmode \"a\" - append\n\nReturns a file option for the specified filename.\n\n|  Mode  |  Description                                                 |\n| ------ | ------------------------------------------------------------ |\n|   w    |  opens file in write mode (previous content is overwritten)  |\n|   r    |  opens file in read mode                                     |\n|   a    |  opens file in append mode                                   |\n\n\n> **Warning**: When trying to open a file in `r`ead mode and the file didn't exist, this previously returned `nil`.\n> This function now throws an uncatchable error (no idea how they did this)  \n> Use file.Enumerate for checking if the file exists first.",
+    "scope": "moonscript,yuescript"
+  },
+  "fileDelete": {
+    "prefix": "file.Delete filename: string",
+    "body": "file.Delete filename",
+    "description": "Deletes the file.",
+    "scope": "moonscript,yuescript"
+  },
+  "fileEnumerate": {
+    "prefix": "file.Enumerate callback: function",
+    "body": "file.Enumerate callback",
+    "description": "Calls the callback with every filename found in the cheat directory.",
+    "scope": "moonscript,yuescript"
+  },
+  "fileWrite": {
+    "prefix": "file.Write filename: string, content: string",
+    "body": "file.Write filename, content",
+    "description": "Writes the specified content in the specified file.",
+    "scope": "moonscript,yuescript"
+  },
+  "fileRead": {
+    "prefix": "file.Read filename: string -> string",
+    "body": "file.Read filename",
+    "description": "Returns the content of the specified file.\n\n> **Warning**: Trying to read from a non-existent file will throw an uncatchable error!",
+    "scope": "moonscript,yuescript"
+  },
+  "httpGet": {
+    "prefix": "http.Get url: string, callback: function",
+    "body": "http.Get url, callback",
+    "description": "If no callback is specified, this function will freeze the entire game until the ressource has been fetched.\n\nYou should **never** call this function without a callback unless the ressource is crucial to the execution (and you should cache the result on disk then probably too).\n\n```lua\n-- Simple nonblocking auto updater\n\nlocal VERSION = \"1.0.0\"\n\nhttp.Get(\"https://myserver/myscript/version\", function(version)\n    if version == nil then return end -- nil means no internet connection\n    if version == VERSION then return end -- no update\n    http.Get(\"https://myserver/myscript/script.lua\", function(code)\n        if code == nil then return end -- no connection, abort\n        file.Write(GetScriptName(), code)\n        UnloadScript(GetScriptName())\n        LoadScript(GetScriptName())\n    end)\nend)\n```",
+    "scope": "moonscript,yuescript"
+  },
+  "vectorAdd": {
+    "prefix": "vector.Add vector1, vector2",
+    "body": "vector.Add vector1, vector2",
+    "description": "Adds 2 vectors and returns the result.\n\n```lua\nvector.Add({1, 1, 1}, {2, 2, 2}) -- {3, 3, 3}\n```",
+    "scope": "moonscript,yuescript"
+  },
+  "vectorSubtract": {
+    "prefix": "vector.Subtract vector1, vector2",
+    "body": "vector.Subtract vector1, vector2",
+    "description": "Subtracts 2 vectors and returns the result.\n\n```lua\nvector.Subtract({1, 1, 1}, {2, 2, 2}) -- {-1, -1, -1}\n```",
+    "scope": "moonscript,yuescript"
+  },
+  "vectorMultiply": {
+    "prefix": "vector.Multiply vector, factor",
+    "body": "vector.Multiply vector, factor",
+    "description": "Multiplies a vector by the specified factor nand returns the result.\n\n```lua\nvector.Multiply({5, 5, 5}, 5) -- {25, 25, 25}\n```",
+    "scope": "moonscript,yuescript"
+  },
+  "vectorDivide": {
+    "prefix": "vector.Divide vector, factor",
+    "body": "vector.Divide vector, factor",
+    "description": "Divides a vector by the specified factor nand returns the result.\n\n```lua\nvector.Divide({5, 5, 5}, 2) -- {2.5, 2.5, 2.5}\n```",
+    "scope": "moonscript,yuescript"
+  },
+  "vectorLength": {
+    "prefix": "vector.Length vector -> number",
+    "body": "vector.Length vector",
+    "description": "Returns the euclidean distance to the vector.\n\n```lua\nvector.Length({1, 1, 1}) -- 1.7320508075688772\n```",
+    "scope": "moonscript,yuescript"
+  },
+  "vectorLengthSqr": {
+    "prefix": "vector.LengthSqr vector -> number",
+    "body": "vector.LengthSqr vector",
+    "description": "Returns the Manhattan distance to the vector.\n\n```lua\nvector.Length({1, 1, 1}) -- 3\n```",
+    "scope": "moonscript,yuescript"
+  },
+  "vectorDistance": {
+    "prefix": "vector.Distance vector1, vector2 -> number",
+    "body": "vector.Distance vector1, vector2",
+    "description": "Returns the euclidean distance between two vectors.",
+    "scope": "moonscript,yuescript"
+  },
+  "vectorNormalize": {
+    "prefix": "vector.Normalize vector",
+    "body": "vector.Normalize vector",
+    "description": "Returns a normalized vector.\n\n```lua\nvector.Normalize({1, 2, 3}) -- {0.33333, 0.66666, 1}\nvector.Normalize({1, 2, 3}) -- {0.16666, 0.33333, 0.5}\n```\n\n// TODO: if greatest or sum",
+    "scope": "moonscript,yuescript"
+  },
+  "vectorAngles": {
+    "prefix": "vector.Angles angle",
+    "body": "vector.Angles angle",
+    "description": "",
+    "scope": "moonscript,yuescript"
+  },
+  "vectorAngleForward": {
+    "prefix": "vector.AngleForward angle",
+    "body": "vector.AngleForward angle",
+    "description": "",
+    "scope": "moonscript,yuescript"
+  },
+  "vectorAngleRight": {
+    "prefix": "vector.AngleRight angle",
+    "body": "vector.AngleRight angle",
+    "description": "",
+    "scope": "moonscript,yuescript"
+  },
+  "vectorAngleUp": {
+    "prefix": "vector.AngleUp angle",
+    "body": "vector.AngleUp angle",
+    "description": "",
+    "scope": "moonscript,yuescript"
+  },
+  "vectorAngleNormalize": {
+    "prefix": "vector.AngleNormalize angle",
+    "body": "vector.AngleNormalize angle",
+    "description": "",
+    "scope": "moonscript,yuescript"
+  },
+  "networkGetAddrInfo": {
+    "prefix": "network.GetAddrInfo name: string -> string",
+    "body": "network.GetAddrInfo name",
+    "description": "Resolves hostname to IP and returns it.",
+    "scope": "moonscript,yuescript"
+  },
+  "networkGetNameInfo": {
+    "prefix": "network.GetNameInfo address: string -> string",
+    "body": "network.GetNameInfo address",
+    "description": "Resolves IP to hostname and returns it.\n\n> **Note**: Reverse DNS lookups can be spoofed.",
+    "scope": "moonscript,yuescript"
+  },
+  "panoramaRunScript": {
+    "prefix": "panorama.RunScript script: string",
+    "body": "panorama.RunScript script",
+    "description": "Runs javascript in the context of CSGO panorama UI.\n\n[CS:GO Panorama API](https://developer.valvesoftware.com/wiki/CSGO_Panorama_API)",
+    "scope": "moonscript,yuescript"
+  },
+  "cheatIsFakeDucking": {
+    "prefix": "cheat.IsFakeDucking! -> boolean",
+    "body": "cheat.IsFakeDucking!",
+    "description": "Returns if you're fakeducking.",
+    "scope": "moonscript,yuescript"
+  },
+  "cheatRequestSpeedBurst": {
+    "prefix": "cheat.RequestSpeedBurst!",
+    "body": "cheat.RequestSpeedBurst!",
+    "description": "No fucking idea.\n\n// TODO",
+    "scope": "moonscript,yuescript"
+  }
+}

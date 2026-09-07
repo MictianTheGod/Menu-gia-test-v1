@@ -1,0 +1,476 @@
+Entity
+Entity.GetName(): string
+
+Returns entity name.
+
+Entity.GetClass(): string
+// TODO
+
+Entity.GetIndex(): number
+Returns the index of the entity (only for players).
+
+Entity.GetTeamNumber(): number
+Returns the team number.
+
+Teamnumber	Name
+1	Spectator
+2	Counter-Terrorists
+3	Terrorists
+Entity.GetAbsOrigin(): Vector3
+Returns origin position of the entity.
+
+Entity.GetMins()
+// TODO
+
+Entity.GetMaxs()
+// TODO
+
+Entity.GetHealth(): number
+Returns how much health the entity has.
+
+Entity.GetMaxHealth(): number
+Returns the maximum health of the entity.
+
+Entity.IsPlayer(): boolean
+Returns if the entity is a player.
+
+Entity.IsAlive(): boolean
+Returns if the entity is alive.
+
+Entity.GetProp(name: string)
+Returns the value of the prop.
+
+Entity.SetProp(name: string, value)
+Sets the value of the prop.
+
+Entity.GetPropFloat(...: string): number
+Interprets the value at the path as a float and returns it.
+Accepts nested paths.
+
+Entity.GetPropInt(...: string): number
+Interprets the value at the path as an int and returns it.
+Accepts nested paths.
+
+Entity.GetPropBool( ... : string): boolean
+Interprets the value at the path as a boolean and returns it.
+Accepts nested paths.
+
+Entity.GetPropString( ... : string): string
+Interprets the value at the path as a string and returns it.
+Accepts nested paths.
+
+Entity.GetPropVector( ... : string): Vector3
+Interprets the value at the path as a Vector3 and returns it.
+Accepts nested paths.
+
+Entity.GetPropEntity( ... : string): Entity
+Interprets the value at the path as an Entity and returns it.
+Accepts nested paths.
+
+Entity.SetPropFloat(value: number, ...: string)
+Sets the value at the path to a float.
+Accepts nested paths.
+
+Entity.SetPropInt(value: number, ...: string)
+Sets the value at the path to an int.
+Accepts nested paths.
+
+Entity.SetPropBool(value: boolean, ...: string)
+Sets the value at the path to a boolean.
+Accepts nested paths.
+
+Entity.SetPropVector(value: Vector3, ...: string)
+Sets the value at the path to a Vector3.
+Accepts nested paths.
+
+Entity.SetPropEntity(value: Entity, ...: string)
+Sets the value at the path to an Entity.
+Accepts nested paths.
+
+Entity.GetHitboxPosition(hitbox: Hitbox): Vector3
+Entity.GetBonePosition(bone: Bone): Vector3
+Entity.GetWeaponID(): number
+// TODO
+
+Entity.GetWeaponType(): number
+// TODO
+
+Entity.GetWeaponSpread(): number
+Entity.GetWeaponInaccuracy(): number
+EspBuilder
+EspBuilder.Color(r: number, g: number, b: number, a: number)
+
+Sets the RGBA color for future text/bars/icons.
+
+EspBuilder.GetEntity(): Entity
+Returns the entity this esp builder is for.
+
+EspBuilder.GetRect()
+// TODO
+
+EspBuilder.AddTextTop(text: string)
+Adds the specified text on the top.
+
+EspBuilder.AddTextBottom(text: string)
+Adds the specified text on the bottom.
+
+EspBuilder.AddTextLeft(text: string)
+Adds the specified text at the left.
+
+EspBuilder.AddTextRight(text: string)
+Adds the specified text at the right.
+
+EspBuilder.AddBarTop(percentage: number)
+Adds a bar with the specified percentage on the top (left to right, 0 - 1)
+
+// TODO: percent range
+
+EspBuilder.AddBarBottom(percentage: number)
+Adds a bar with the specified percentage on the bottom (left to right, 0 - 1)
+
+// TODO: percent range
+
+EspBuilder.AddBarLeft(percentage: number)
+Adds a bar with the specified percentage on the left (bottom to top, 0 - 1)
+
+// TODO: percent range
+
+EspBuilder.AddBarRight(percentage: number)
+Adds a bar with the specified percentage on the right (bottom to top, 0 - 1)
+
+// TODO: percent range
+
+EspBuilder.AddIconTop(texture: Texture)
+// TODO
+
+EspBuilder.AddIconBottom(texture: Texture)
+EspBuilder.AddIconLeft(texture: Texture)
+EspBuilder.AddIconRight(texture: Texture)
+UserCmd
+Fields:
+
+Note: I'm only a human and have no idea what most of these do. (TODO)
+
+Name	Type	Description
+command_number	number	---
+tick_count	number	tick count
+viewangles	EulerAngles	ViewAngles (use UserCmd.Set/GetViewAngles instead)
+aimdirection	Vector3	---
+forwardmove	number	---
+sidemove	number	---
+upmove	number	---
+buttons	number	buttons (bitwise)
+impulse	number	---
+weaponselect	number	---
+weaponsubtype	number	---
+random_seed	number	---
+mousedx	number	---
+mousedy	number	---
+hasbeenpredicted	boolean	---
+headangles	EulerAngles	---
+headoffset	Vector3	---
+sendpacket	boolean	if the usercmd is choked, set to false to choke
+UserCmd.SetViewAngles(pitch: number, yaw: number, roll: number)
+
+Sets the viewangles of this usercmd.
+
+UserCmd.GetViewAngles(): number, number, number
+Returns pitch, yaw, roll of the current viewangles of this usercmd.
+
+UserCmd.SetSendPacket(sendpacket: boolean)
+Determines whether to send the usercmd or not.
+
+UserCMD.GetSendPacket(): boolean
+Returns if the usercmd is sent or not (choked).
+
+UserCMD.SetButtons(buttons)
+Setter for the buttons field.
+
+UserCMD.GetButtons()
+Getter for the buttons field.
+
+UserCMD.SetForwardMove(factor: number)
+Setter for the forwardmove field.
+
+UserCMD.GetForwardMove()
+Getter for the forwardmove field.
+
+UserCMD.SetSideMove(factor: number)
+Setter for the sidemove field.
+
+UserCMD.GetSideMove()
+Getter for the sidemove field.
+
+UserCMD.SetUpMove(factor: number)
+Setter for the upmove field.
+
+UserCMD.GetUpMove()
+Getter for the upmove field.
+
+GameEvent
+See this list for all game events and fields.
+
+GameEvent.GetName(): string
+
+Returns the game event name (e.g. player_hurt).
+
+GameEvent.GetString(field: string): string
+Returns the field as string.
+
+GameEvent.GetInt(field: string): number
+Returns the field as int.
+
+GameEvent.GetFloat(field: string): number
+Returns the field as float.
+
+GuiObject
+GuiObject.GetName(): string
+
+Returns the name of the gui object.
+
+GuiObject.SetValue(...)
+Sets the value of the gui object.
+For a gui.ColorPicker this takes 4 number arguments, otherwise only a single number.
+
+GuiObject.GetValue()
+Returns the value of the gui object.
+
+Returns 4 number for a gui.ColorPicker, otherwise only one number.
+
+GuiObject.SetActive(active: boolean)
+Makes the window appear or disappear.
+
+Note: Only for gui.Window.
+
+GuiObject.IsActive(): boolean
+Returns if the window is visible.
+
+Note: Only for gui.Window.
+
+GuiObject.SetText(text: string)
+Sets the current displayed text.
+
+Note: Only for gui.Text.
+
+GuiObject.SetOpenKey(key: number)
+Changes the window's open/close keybind.
+
+Note: Only for gui.Window.
+
+GuiObject.SetDescription(text: string)
+Adds a description to the gui object.
+
+GuiObject.SetOptions(...: string)
+Sets options for a gui.Combobox or gui.Listbox.
+
+GuiObject.SetPosX(x: number)
+Sets relative x position to the parent.
+
+GuiObject.SetPosY(y: number)
+Sets relative y position to the parent.
+
+GuiObject.SetWidth(width: number)
+Sets width of the gui object.
+
+GuiObject.SetHeight(height: number)
+Sets height of the gui object.
+
+GuiObject.SetInvisible(invisibility: boolean)
+Makes gui object invisible or visible.
+
+GuiObject.SetDisabled(disabled: boolean)
+Makes gui disabled (not clickable) or enabled.
+
+GuiObject.Remove()
+Removes gui object.
+
+GuiObject.Reference(...)
+Like gui.Reference but for children.
+
+GuiObject.Children(): function
+Returns a generator for the gui objects children.
+
+File
+File.Read(): string
+
+Returns the file content.
+File must be opened in r mode.
+
+File.Write(content: string)
+Writes the content to the file.
+File must be opened in w or a mode.
+
+File.Size(): number
+Returns the flesize.
+File must be opened in r mode.
+
+File.Close()
+Closes the file.
+Future file operations will fail.
+
+Warning: This must be called once you're done with file operations.
+
+UserMessage
+User Message Protobuf
+
+UserMessage.GetID(): number
+
+Returns the message id.
+
+UserMessage.GetInt(...)
+Returns the value as an integer at the path.
+
+UserMessage.GetFloat(...)
+Returns the value as a float at the path.
+
+UserMessage.GetString(...)
+Returns the value as a strbg at the path.
+
+StringCmd
+StringCmd.Get(): string
+
+Returns the command about to be sent.
+
+StringCmd.Set(command: string)
+Overwrites the command.
+If command is an empty string, the command won't be sent.
+
+Socket
+Note: UDP packets are restricted to 64kb.
+
+Socket.Bind(ip: string, port: number)
+
+Binds the socket to the ip and port to accept incoming messages.
+Returns true if bound successfully.
+
+Socket.SendTo(ip: string, port: number, message: string)
+Sends the message over UDP to the destination ip and port.
+Returns message size.
+
+Socket.RecvFrom(ip: string, port: number, size: number): string, string, number
+Returns msg, ip, port coming from the specified ip and port. This is non-blocking and returns nil when there's no packet.
+
+Socket.Close()
+Closes the socket.
+Future socket operations will fail.
+
+Warning: This must be called once you're done with socket operations.
+
+Material
+Material.GetName(): string
+
+Returns material nane.
+
+Material.GetTextureGroupName(): string
+Returns group the material is part of.
+
+Material.AlphaModulate(alpha: number)
+Modulates transparency of material.
+
+Material.ColorModulate(r: number, g: number, b: number)
+Modulates color of material.
+
+Material.SetMaterialVarFlag(flag: string, value)
+Changes material var flag.
+
+Material.SetShaderParam(name: string, value)
+Sets the shader paramater.
+Shader parameters can be found here.
+
+DrawModelContext
+DrawModelContext.GetEntity(): Entity
+
+Returns entity linked to the drawn model, can be nil (e.g. dropped weapon).
+
+DrawModelContext.ForcedMaterialOverride( mat )
+Replaces material used to draw the model.
+Material can be found or created via the materials api.
+
+DrawModelContext.DrawExtraPass()
+Redraws the model.
+Can be used to achieve various effects with different materials.
+
+Vector3
+Fields:
+
+Name	Type	Description
+x	number	x coordinate
+y	number	y coordinate
+z	number	z coordinate
+Vector3.Length(): number
+
+Returns the euclidean distance from the origin to the vector.
+
+Vector3(1, 1, 1):Length() -- 1.7320508075688772
+Vector3.LengthSqr(): number
+Returns the Manhattan distance from the origin to the vector.
+
+Vector3(1, 1, 1):LengthSqr() -- 3
+Vector3.Length2D(): number
+Returns the euclidean distance from the origin to the vector ignoring height.
+
+Vector3(1, 0, 1):Length2D() -- 1.4142135623730951
+Vector3(1, 1000, 1):Length2D() -- 1.4142135623730951
+Vector3.Length2DSqr(): number
+Returns the Manhattan distance from the origin to the vector ignoring height.
+
+Vector3(1, 0, 1):Length2DSqr() -- 2
+Vector3(1, 1000, 1):Length2DSqr() -- 2
+Vector3.Dot(vector: Vector3)
+// TODO
+
+Vector3.Cross(vector: Vector3)
+// TODO
+
+Vector3.Clear()
+// TODO
+
+Vector3.Normalize()
+// TODO
+
+Vector3.Right()
+// TODO
+
+Vector3.Up()
+// TODO
+
+Vector3.Angles()
+// TODO
+
+EulerAngles
+Fields:
+
+Name	Type	Description
+pitch	number	pitch angle
+yaw	number	yaw angle
+roll	number	roll angle
+EulerAngles.Clear()
+
+// TODO
+
+EulerAngles.Forward()
+// TODO
+
+EulerAngles.Normalize()
+// TODO
+
+EulerAngles.Right()
+// TODO
+
+EulerAngles.Up()
+// TODO
+
+Trace
+More information can be found at Valve Wiki
+
+Fields:
+
+Name	Type	Description
+fraction	number	check wiki
+entity	Entity	entity that was hit
+place.normal	Vector3	start of the plane that was hit
+contents	number	check wiki
+hitbox	Bone	bone that was hit
+hitgroup	Hitbox	hitbox that was hit
+allsolid	boolean	check wiki
+startsolid	boolean	check wiki
